@@ -76,7 +76,7 @@ export function MemoryProfileSection({
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 mb-8 animate-fade-in">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Your LLM Memory Profile</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Your AI Memory Profile</h2>
           <p className="text-slate-600">Extracted from {conversationCount.toLocaleString()} conversations</p>
         </div>
         <div className="flex space-x-2">

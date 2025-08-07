@@ -94,7 +94,7 @@ export function FileUpload({ onFileUpload }: FileUploadProps) {
         </div>
         <h2 className="text-2xl font-bold text-slate-900 mb-2">Upload Your ChatGPT Export</h2>
         <p className="text-slate-600 mb-6 max-w-md mx-auto">
-          Upload your ChatGPT conversation export file to extract your LLM memory profile. All processing happens locally on your device.
+          Upload your ChatGPT conversation export file to extract your AI memory profile. All processing happens locally on your device.
         </p>
         
         <div

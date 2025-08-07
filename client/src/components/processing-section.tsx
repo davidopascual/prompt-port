@@ -12,7 +12,7 @@ export function ProcessingSection({ processingStatus }: ProcessingSectionProps) 
         <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
           <Cog className="text-amber-600 w-8 h-8 animate-spin" />
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 mb-2">Extracting Your LLM Memory</h2>
+        <h2 className="text-2xl font-bold text-slate-900 mb-2">Extracting Your AI Memory</h2>
         <p className="text-slate-600 mb-6">
           Processing your conversations to identify patterns, preferences, and key information...
         </p>

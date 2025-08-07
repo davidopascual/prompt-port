@@ -12,9 +12,16 @@ interface PromptGenerationProps {
 
 const models = [
   { key: "claude" as const, label: "Claude", icon: Bot, color: "blue" },
-  { key: "gemini" as const, label: "Gemini", icon: Star, color: "slate" },
-  { key: "chatgpt" as const, label: "ChatGPT", icon: MessageCircle, color: "slate" },
-  { key: "other" as const, label: "Other", icon: MoreHorizontal, color: "slate" },
+  { key: "gemini" as const, label: "Gemini", icon: Star, color: "emerald" },
+  { key: "chatgpt" as const, label: "ChatGPT", icon: MessageCircle, color: "green" },
+  { key: "grok" as const, label: "Grok (X.AI)", icon: Bot, color: "slate" },
+  { key: "perplexity" as const, label: "Perplexity", icon: Sparkles, color: "purple" },
+  { key: "llama" as const, label: "Llama", icon: Bot, color: "orange" },
+  { key: "mistral" as const, label: "Mistral", icon: Bot, color: "red" },
+  { key: "cohere" as const, label: "Cohere", icon: Bot, color: "indigo" },
+  { key: "anthropic-claude" as const, label: "Anthropic Claude", icon: Bot, color: "blue" },
+  { key: "openai-gpt4" as const, label: "OpenAI GPT-4", icon: MessageCircle, color: "green" },
+  { key: "other" as const, label: "Other", icon: MoreHorizontal, color: "gray" },
 ];
 
 export function PromptGeneration({ profile, onGoBack }: PromptGenerationProps) {
@@ -117,34 +124,172 @@ When responding, please:
 
 This context should guide all our future conversations in this session.`;
 
-      case "other":
-        return `# User Profile Context
+      case "grok":
+        return `🚀 CONTEXT: ${baseContext.role} @ ${baseContext.location}
 
-**Professional Background:**
+**PROFESSIONAL PROFILE:**
+→ Expertise: ${baseContext.expertise}
+→ Current Focus: ${baseContext.projects}
+→ Tech Stack: ${baseContext.tools}
+→ Constraints: ${baseContext.constraints}
+
+**COMMUNICATION & LEARNING:**
+→ Style: ${baseContext.communication}
+→ Learning: ${baseContext.learning}
+→ Work Philosophy: ${baseContext.workStyle}
+
+**INTERESTS & FOCUS AREAS:**
+${baseContext.interests.map(interest => `• ${interest}`).join('\n')}
+
+**QUERY PATTERNS:** ${baseContext.questions}
+
+🎯 **INSTRUCTION:** Reference my background, suggest compatible solutions, and provide actionable advice that fits my workflow. Keep it practical and implementation-focused.`;
+
+      case "perplexity":
+        return `**Professional Context for Search & Analysis:**
+
+**Role & Expertise:** ${baseContext.role} specializing in ${baseContext.expertise} (${baseContext.location})
+
+**Technical Environment:**
+- Current Projects: ${baseContext.projects}
+- Technology Stack: ${baseContext.tools}
+- Working Constraints: ${baseContext.constraints}
+
+**Preferences:**
+- Communication: ${baseContext.communication}
+- Learning Style: ${baseContext.learning}
+- Work Approach: ${baseContext.workStyle}
+
+**Research Interests:**
+${baseContext.interests.map(interest => `→ ${interest}`).join('\n')}
+
+**Typical Query Context:** ${baseContext.questions}
+
+When researching and analyzing information, prioritize sources and solutions that align with my technical environment and professional focus. Include practical implementation details and cite relevant technical documentation.`;
+
+      case "llama":
+        return `System: You are assisting a ${baseContext.role} based in ${baseContext.location}.
+
+User Profile:
+- Expertise: ${baseContext.expertise}
+- Projects: ${baseContext.projects}
+- Tools: ${baseContext.tools}
+- Constraints: ${baseContext.constraints}
+- Communication Style: ${baseContext.communication}
+- Learning Style: ${baseContext.learning}
+- Work Style: ${baseContext.workStyle}
+
+Interest Areas:
+${baseContext.interests.map(interest => `• ${interest}`).join('\n')}
+
+Query Context: ${baseContext.questions}
+
+Provide responses that are technical, practical, and directly applicable to the user's environment and expertise level.`;
+
+      case "mistral":
+        return `[INST] You are now my AI assistant. Here's my professional context:
+
+**ROLE:** ${baseContext.role} (${baseContext.location})
+**EXPERTISE:** ${baseContext.expertise}
+**CURRENT WORK:** ${baseContext.projects}
+**TECH STACK:** ${baseContext.tools}
+**CONSTRAINTS:** ${baseContext.constraints}
+
+**PREFERENCES:**
+- Communication: ${baseContext.communication}
+- Learning: ${baseContext.learning}
+- Work Style: ${baseContext.workStyle}
+
+**INTERESTS:**
+${baseContext.interests.map(interest => `• ${interest}`).join('\n')}
+
+**TYPICAL QUERIES:** ${baseContext.questions}
+
+Adapt your responses to my professional background and provide practical, implementable solutions. [/INST]
+
+I understand your professional context and will tailor my responses accordingly. How can I assist you today?`;
+
+      case "cohere":
+        return `## User Profile Configuration
+
+**Professional Identity:**
 - Position: ${baseContext.role}
 - Location: ${baseContext.location}
-- Specialization: ${baseContext.expertise}
+- Core Competency: ${baseContext.expertise}
 
-**Communication & Learning Preferences:**
-- Communication Style: ${baseContext.communication}
-- Learning Approach: ${baseContext.learning}
-- Work Philosophy: ${baseContext.workStyle}
-
-**Current Situation:**
+**Work Environment:**
 - Active Projects: ${baseContext.projects}
 - Technology Stack: ${baseContext.tools}
 - Operating Constraints: ${baseContext.constraints}
 
-**Areas of Interest:**
+**Communication Framework:**
+- Preferred Style: ${baseContext.communication}
+- Learning Approach: ${baseContext.learning}
+- Methodology: ${baseContext.workStyle}
+
+**Domain Focus Areas:**
+${baseContext.interests.map((interest, i) => `${i + 1}. ${interest}`).join('\n')}
+
+**Query Pattern Analysis:** ${baseContext.questions}
+
+**Response Guidelines:** Provide contextually relevant responses that build on the user's existing expertise, reference their technical environment, and offer actionable solutions within their stated constraints.`;
+
+      case "anthropic-claude":
+        return `I'm a ${baseContext.role} working in ${baseContext.location}, and I'd like you to serve as my AI research and development partner.
+
+## Professional Context
+**Role & Expertise:** ${baseContext.role} with deep experience in ${baseContext.expertise}
+**Current Projects:** ${baseContext.projects}
+**Technical Environment:** ${baseContext.tools}
+**Working Constraints:** ${baseContext.constraints}
+
+## Communication & Work Style
+**Communication Preference:** ${baseContext.communication} interactions
+**Learning Style:** ${baseContext.learning} approaches work best for me
+**Work Philosophy:** I follow ${baseContext.workStyle} methodologies
+
+## Areas of Focus & Interest
+${baseContext.interests.map((interest, i) => `${i + 1}. ${interest}`).join('\n')}
+
+## Response Optimization
+- Build on my existing ${baseContext.expertise} knowledge
+- Suggest solutions compatible with my ${baseContext.tools} environment
+- Provide immediately implementable advice given my ${baseContext.constraints}
+- Match my ${baseContext.communication} communication preference
+- Use ${baseContext.learning} explanations and examples
+
+Please maintain this context throughout our conversation and reference my background when providing recommendations.`;
+
+      case "openai-gpt4":
+        return `You are my personalized AI assistant. Use this professional profile to provide relevant, contextual responses:
+
+**Professional Background:**
+I'm a ${baseContext.role} located in ${baseContext.location}, with deep expertise in ${baseContext.expertise}.
+
+**Current Work Context:**
+- Active Projects: ${baseContext.projects}
+- Technology Stack: ${baseContext.tools}
+- Operating Constraints: ${baseContext.constraints}
+
+**Communication & Learning Preferences:**
+- Communication Style: I prefer ${baseContext.communication} responses
+- Learning Style: I learn best through ${baseContext.learning}
+- Work Methodology: I follow ${baseContext.workStyle} approaches
+
+**Key Interest Areas:**
 ${baseContext.interests.map(interest => `• ${interest}`).join('\n')}
 
-**Common Query Types:**
-${baseContext.questions}
+**Typical Query Context:** ${baseContext.questions}
 
----
+**Instructions for Responses:**
+1. Reference my expertise in ${baseContext.expertise} when relevant
+2. Suggest solutions compatible with my ${baseContext.tools} environment
+3. Consider my ${baseContext.constraints} in all recommendations
+4. Use ${baseContext.communication} communication style
+5. Provide ${baseContext.learning} explanations and examples
+6. Maintain consistency with my ${baseContext.workStyle} methodology
 
-**Instructions for AI:**
-Use this profile to personalize responses. Reference the user's expertise, suggest solutions compatible with their tools, and provide advice that fits their work style and constraints. Prioritize practical, implementable recommendations over theoretical discussions.`;
+Keep this profile active throughout our conversation and tailor all responses to my professional context and preferences.`;
 
       default:
         return generatePrompt("claude", profile);
@@ -207,7 +352,7 @@ Use this profile to personalize responses. Reference the user's expertise, sugge
     <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8 animate-fade-in">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Generate LLM Prompts</h2>
+          <h2 className="text-2xl font-bold text-slate-900">Generate AI Prompts</h2>
           <p className="text-slate-600">Create personalized prompts for different AI models</p>
         </div>
         <Button variant="outline" onClick={onGoBack}>
@@ -218,7 +363,7 @@ Use this profile to personalize responses. Reference the user's expertise, sugge
 
       {/* Model Selection */}
       <div className="mb-6">
-        <label className="block text-sm font-medium text-slate-700 mb-3">Select Target LLM</label>
+        <label className="block text-sm font-medium text-slate-700 mb-3">Select Target AI Model</label>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {models.map((model) => {
             const Icon = model.icon;
@@ -290,7 +435,7 @@ Use this profile to personalize responses. Reference the user's expertise, sugge
           <div>
             <h3 className="font-medium text-blue-900 mb-1">How to Use This Prompt</h3>
             <p className="text-sm text-blue-700 mb-2">
-              Copy this prompt and paste it at the beginning of your conversation with {models.find(m => m.key === selectedModel)?.label} (or your chosen LLM). 
+              Copy this prompt and paste it at the beginning of your conversation with {models.find(m => m.key === selectedModel)?.label} (or your chosen AI model). 
               This will help the AI understand your background, preferences, and working style for more personalized responses.
             </p>
             <p className="text-xs text-blue-600">

@@ -14,7 +14,19 @@ export const memoryProfileSchema = z.object({
   constraints: z.string(),
 });
 
-export const llmModelSchema = z.enum(["claude", "gemini", "chatgpt", "other"]);
+export const llmModelSchema = z.enum([
+  "claude", 
+  "gemini", 
+  "chatgpt", 
+  "grok", 
+  "perplexity", 
+  "llama", 
+  "mistral", 
+  "cohere", 
+  "anthropic-claude", 
+  "openai-gpt4", 
+  "other"
+]);
 
 export const uploadedFileSchema = z.object({
   name: z.string(),

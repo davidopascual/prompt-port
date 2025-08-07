@@ -1,4 +1,4 @@
-import { Shield, BusFront } from "lucide-react";
+import { Shield, Zap } from "lucide-react";
 
 export function Header() {
   return (
@@ -6,12 +6,12 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-              <BusFront className="text-white w-5 h-5" />
+            <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-lg flex items-center justify-center">
+              <Zap className="text-white w-5 h-5" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-900">LLMBridge</h1>
-              <p className="text-xs text-slate-500">Privacy-First LLM Memory Tool</p>
+              <h1 className="text-xl font-bold text-slate-900">PromptPort</h1>
+              <p className="text-xs text-slate-500">AI Memory Transfer & Prompt Generation</p>
             </div>
           </div>
           <div className="flex items-center space-x-2 text-sm text-slate-600">

@@ -360,6 +360,180 @@ Use this profile to:
 This profile should guide all interactions and responses in this session.`;
         break;
 
+      case "grok":
+        enhancedPrompt = `🚀 CONTEXT: ${profile.role} @ ${profile.location}
+
+**PROFESSIONAL PROFILE:**
+→ Expertise: ${profile.expertise}
+→ Current Focus: ${profile.projects}
+→ Tech Stack: ${profile.tools}
+→ Constraints: ${profile.constraints}
+
+**COMMUNICATION & LEARNING:**
+→ Style: ${profile.communication}
+→ Learning: ${profile.learning}
+→ Work Philosophy: ${profile.workStyle}
+
+**INTERESTS & FOCUS AREAS:**
+${profile.interests.map((interest: string) => `• ${interest}`).join('\n')}
+
+**QUERY PATTERNS:** ${profile.questions}
+
+🎯 **INSTRUCTION:** Reference my background, suggest compatible solutions, and provide actionable advice that fits my workflow. Keep it practical and implementation-focused.`;
+        break;
+
+      case "perplexity":
+        enhancedPrompt = `**Professional Context for Search & Analysis:**
+
+**Role & Expertise:** ${profile.role} specializing in ${profile.expertise} (${profile.location})
+
+**Technical Environment:**
+- Current Projects: ${profile.projects}
+- Technology Stack: ${profile.tools}
+- Working Constraints: ${profile.constraints}
+
+**Preferences:**
+- Communication: ${profile.communication}
+- Learning Style: ${profile.learning}
+- Work Approach: ${profile.workStyle}
+
+**Research Interests:**
+${profile.interests.map((interest: string) => `→ ${interest}`).join('\n')}
+
+**Typical Query Context:** ${profile.questions}
+
+When researching and analyzing information, prioritize sources and solutions that align with my technical environment and professional focus. Include practical implementation details and cite relevant technical documentation.`;
+        break;
+
+      case "llama":
+        enhancedPrompt = `System: You are assisting a ${profile.role} based in ${profile.location}.
+
+User Profile:
+- Expertise: ${profile.expertise}
+- Projects: ${profile.projects}
+- Tools: ${profile.tools}
+- Constraints: ${profile.constraints}
+- Communication Style: ${profile.communication}
+- Learning Style: ${profile.learning}
+- Work Style: ${profile.workStyle}
+
+Interest Areas:
+${profile.interests.map((interest: string) => `• ${interest}`).join('\n')}
+
+Query Context: ${profile.questions}
+
+Provide responses that are technical, practical, and directly applicable to the user's environment and expertise level.`;
+        break;
+
+      case "mistral":
+        enhancedPrompt = `[INST] You are now my AI assistant. Here's my professional context:
+
+**ROLE:** ${profile.role} (${profile.location})
+**EXPERTISE:** ${profile.expertise}
+**CURRENT WORK:** ${profile.projects}
+**TECH STACK:** ${profile.tools}
+**CONSTRAINTS:** ${profile.constraints}
+
+**PREFERENCES:**
+- Communication: ${profile.communication}
+- Learning: ${profile.learning}
+- Work Style: ${profile.workStyle}
+
+**INTERESTS:**
+${profile.interests.map((interest: string) => `• ${interest}`).join('\n')}
+
+**TYPICAL QUERIES:** ${profile.questions}
+
+Adapt your responses to my professional background and provide practical, implementable solutions. [/INST]
+
+I understand your professional context and will tailor my responses accordingly. How can I assist you today?`;
+        break;
+
+      case "cohere":
+        enhancedPrompt = `## User Profile Configuration
+
+**Professional Identity:**
+- Position: ${profile.role}
+- Location: ${profile.location}
+- Core Competency: ${profile.expertise}
+
+**Work Environment:**
+- Active Projects: ${profile.projects}
+- Technology Stack: ${profile.tools}
+- Operating Constraints: ${profile.constraints}
+
+**Communication Framework:**
+- Preferred Style: ${profile.communication}
+- Learning Approach: ${profile.learning}
+- Methodology: ${profile.workStyle}
+
+**Domain Focus Areas:**
+${profile.interests.map((interest: string, i: number) => `${i + 1}. ${interest}`).join('\n')}
+
+**Query Pattern Analysis:** ${profile.questions}
+
+**Response Guidelines:** Provide contextually relevant responses that build on the user's existing expertise, reference their technical environment, and offer actionable solutions within their stated constraints.`;
+        break;
+
+      case "anthropic-claude":
+        enhancedPrompt = `I'm a ${profile.role} working in ${profile.location}, and I'd like you to serve as my AI research and development partner.
+
+## Professional Context
+**Role & Expertise:** ${profile.role} with deep experience in ${profile.expertise}
+**Current Projects:** ${profile.projects}
+**Technical Environment:** ${profile.tools}
+**Working Constraints:** ${profile.constraints}
+
+## Communication & Work Style
+**Communication Preference:** ${profile.communication} interactions
+**Learning Style:** ${profile.learning} approaches work best for me
+**Work Philosophy:** I follow ${profile.workStyle} methodologies
+
+## Areas of Focus & Interest
+${profile.interests.map((interest: string, i: number) => `${i + 1}. ${interest}`).join('\n')}
+
+## Response Optimization
+- Build on my existing ${profile.expertise} knowledge
+- Suggest solutions compatible with my ${profile.tools} environment
+- Provide immediately implementable advice given my ${profile.constraints}
+- Match my ${profile.communication} communication preference
+- Use ${profile.learning} explanations and examples
+
+Please maintain this context throughout our conversation and reference my background when providing recommendations.`;
+        break;
+
+      case "openai-gpt4":
+        enhancedPrompt = `You are my personalized AI assistant. Use this professional profile to provide relevant, contextual responses:
+
+**Professional Background:**
+I'm a ${profile.role} located in ${profile.location}, with deep expertise in ${profile.expertise}.
+
+**Current Work Context:**
+- Active Projects: ${profile.projects}
+- Technology Stack: ${profile.tools}
+- Operating Constraints: ${profile.constraints}
+
+**Communication & Learning Preferences:**
+- Communication Style: I prefer ${profile.communication} responses
+- Learning Style: I learn best through ${profile.learning}
+- Work Methodology: I follow ${profile.workStyle} approaches
+
+**Key Interest Areas:**
+${profile.interests.map((interest: string) => `• ${interest}`).join('\n')}
+
+**Typical Query Context:** ${profile.questions}
+
+**Instructions for Responses:**
+1. Reference my expertise in ${profile.expertise} when relevant
+2. Suggest solutions compatible with my ${profile.tools} environment
+3. Consider my ${profile.constraints} in all recommendations
+4. Use ${profile.communication} communication style
+5. Provide ${profile.learning} explanations and examples
+6. Maintain consistency with my ${profile.workStyle} methodology
+
+Keep this profile active throughout our conversation and tailor all responses to my professional context and preferences.`;
+        break;
+
       default:
         enhancedPrompt = generateEnhancedPrompt(profile, model);
     }

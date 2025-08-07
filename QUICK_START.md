@@ -1,9 +1,9 @@
-# LLMBridge - Quick Start Guide
+# PromptPort - Quick Start Guide
 
 ## Prerequisites
 
 1. **Node.js v18+**: `node --version`
-2. **Ollama with Llama 7B**: `ollama list | grep llama2:7b`
+2. **Ollama with Llama models**: `ollama list | grep llama`
 
 ## Setup (Automated)
 

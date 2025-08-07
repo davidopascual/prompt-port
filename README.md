@@ -1,13 +1,13 @@
-# LLMBridge - Privacy-First LLM Memory Tool
+# PromptPort - Privacy-First AI Memory Transfer & Prompt Generation
 
-LLMBridge is a privacy-first tool that extracts your "LLM memory" (identity, preferences, interests, facts) from ChatGPT exports using local processing with Ollama, and generates personalized prompts for other LLMs.
+PromptPort is a privacy-first tool that extracts your "AI memory" (identity, preferences, interests, facts) from ChatGPT exports using local processing with Ollama, and generates personalized prompts for multiple LLMs including Claude, Gemini, ChatGPT, Grok, and more.
 
 ## Features
 
 - **Privacy-First**: All processing happens locally on your machine
 - **File Upload**: Support for ChatGPT export files (JSON, ZIP, TXT)
-- **Memory Extraction**: Uses Ollama Llama 7B for local LLM processing
-- **Prompt Generation**: Creates personalized prompts for Claude, Gemini, ChatGPT, and other LLMs
+- **Memory Extraction**: Uses Ollama Llama models for local LLM processing
+- **Multi-LLM Support**: Creates personalized prompts for Claude, Gemini, ChatGPT, Grok, Perplexity, and other LLMs
 - **Modern UI**: Clean, responsive interface built with React and Tailwind CSS
 
 ## Prerequisites
